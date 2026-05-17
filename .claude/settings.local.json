@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(\"LangChain Models\\\\venv\\\\Scripts\\\\pip.exe\" install \"pydantic[email]\")"
+    ]
+  }
+}
