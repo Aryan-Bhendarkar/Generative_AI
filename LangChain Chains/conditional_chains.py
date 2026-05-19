@@ -1,7 +1,6 @@
 from langchain_openrouter import ChatOpenRouter
 from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import StrOutputParser
-from langchain_core.output_parsers import PydanticOutputParser
+from langchain_core.output_parsers import StrOutputParser, PydanticOutputParser
 from langchain_core.runnables import RunnableBranch, RunnableLambda
 from pydantic import BaseModel, Field
 from typing import Literal
@@ -37,7 +36,7 @@ classifier_clain = prompt1 | model | parser2
 branch_chain = RunnableBranch(
     (lambda x:x.sentiment == 'positive', prompt2 | model | parser),# type: ignore
     (lambda x:x.sentiment == 'negative', prompt3 | model | parser), # type: ignore
-    RunnableLambda(lambda x: "could not find sentiments")
+    RunnableLambda(lambda x: "could not find sentiments") #Default Condition 
 )
 
 chain = classifier_clain | branch_chain
