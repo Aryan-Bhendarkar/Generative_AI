@@ -18,7 +18,7 @@ llm_with_tools = llm.bind_tools([multiply])
 query = HumanMessage("Multiply 3 with 6 and print the result")
 messages = [query]
 result = llm_with_tools.invoke(messages)
-messages.append(result)
+messages.append(result) # type: ignore
 print(result)
 print(result.tool_calls)
 
