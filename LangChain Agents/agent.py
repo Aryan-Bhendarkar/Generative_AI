@@ -17,3 +17,22 @@ def get_weather(city: str) -> str:
     return response.json()
 
 llm = ChatOpenRouter(model = "openai/gpt-4o-mini")
+
+
+# Agent Building
+from langchain.agents import create_react_agent, AgentExecutor
+from langchain import hub
+
+prompt = hub.pull("hwchase17/react")
+
+agent = create_react_agent(
+    llm = llm,
+    tools = [search_tool, get_weather],
+    prompt = prompt
+)
+
+agent_executor = AgentExecutor(
+    agent = agent,
+    tools = [search_tool, get_weather],
+    verbose = True
+)
