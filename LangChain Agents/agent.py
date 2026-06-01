@@ -36,3 +36,6 @@ agent_executor = AgentExecutor(
     tools = [search_tool, get_weather],
     verbose = True
 )
+
+response = agent_executor.invoke({"input": "Find the second capital of Maharashtra and its current temperature."})
+print(response)
